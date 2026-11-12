@@ -109,22 +109,6 @@ K6 suýt được chọn vì AI có thể giải quá tay bài đang mở và kh
   - đổi luật thành "tài liệu là nguồn chính, không phải nguồn không thể sai": có phản ví dụ kiểm được thì AI kiểm phép tính trước;
   - đính chính cho cả lớp chỉ đi qua `dang_FAQ` có duyệt.
 
-
-### K3 — "Hạn nộp bài 3 là khi nào ạ? Với cả tính độ lệch chuẩn bằng Excel thì dùng hàm gì?"
-- **AI nói gì (nguyên văn):** "Hạn nộp Bài 3 là 23:59 ngày 13/11 (theo trang khoá học) — còn khoảng 1 ngày nữa. Về hàm Excel: tài liệu Buổi 3 (§3.1–§3.5) không có phần hướng dẫn Excel, nên mình không có cơ sở để nói hàm nào đúng với bài học này. Em có thể hỏi TA trong giờ trực hoặc đăng lên FAQ lớp để mọi người cùng xem."
-- **Người dùng thấy gì:** phần hạn nộp có gắn nhãn nguồn "(theo trang khoá học)" + đồng hồ còn lại; phần Excel có nhãn riêng màu khác "ngoài tài liệu buổi 3" thay vì bị trộn chung giọng điệu chắc chắn với phần trên.
-- **Làm gì tiếp:** bấm "Hỏi TA" (`chuyen_TA`) hoặc "Đăng FAQ" (`dang_FAQ`) cho câu hỏi Excel.
-- **Ai được báo, sau bao lâu:** nếu bấm Hỏi TA, TA nhận ngay (trong giờ trực); nếu đăng FAQ, bài chờ duyệt trước khi hiện công khai cho cả lớp (không tự động public).
-- **Quyết định:** **trả lời kèm giới hạn** cho phần hạn nộp (có dữ liệu chắc chắn, hỏi lại ở đây chỉ gây khó chịu) **+ dừng, không trả lời** phần Excel (không có cơ sở trong tài liệu). Loại "hỏi lại" cho phần hạn nộp vì dữ liệu đã rõ, hỏi ngược là vô nghĩa. Loại việc tự trả lời đại (ví dụ bịa STDEV) cho phần Excel vì tool tra tài liệu không trả về kết quả nào — trả lời vẫn là bịa, chỉ khác là bịa tự tin.
-- **Loại lỗi:** lỗi **hệ thống** — nếu không thiết kế trước, khi tool tra cứu tài liệu không tìm thấy gì, mô hình ngôn ngữ sẽ tự "lấp khoảng trống" bằng kiến thức ngoài tài liệu và trình bày như sách giáo khoa. Đây là lỗi thiết kế retrieval, không phải học viên hỏi sai hay ngữ cảnh đặc biệt.
-- **HAX/PAIR:**
-  - **G2** (nói rõ hệ thống làm tốt tới đâu) — ở câu "tài liệu Buổi 3 không có phần hướng dẫn Excel, nên mình không có cơ sở".
-  - **Explainability & Trust (PAIR)** — ở nhãn nguồn "(theo trang khoá học)" gắn cùng câu trả lời hạn nộp, cho học viên tự kiểm được.
-  - **G11** (giải thích vì sao) — cùng câu từ chối phần Excel, nói rõ lý do là "không có trong tài liệu" chứ không phải "AI không biết".
-- **Lỗi sửa câu chữ không cứu được:** nếu không có cơ chế bắt buộc trả lời mẫu "không có trong tài liệu" khi tool tra cứu rỗng, thì dù nhắc mô hình "đừng bịa" bằng prompt, nó vẫn có thể tự tin trả lời sai ở lần hỏi khác theo cách diễn đạt khác. Thiết kế cứu: khi `tra_cuu_tai_lieu` trả về rỗng, hệ thống **buộc** hiển thị khối "ngoài tài liệu buổi 3" cố định, không để mô hình tự sinh câu trả lời tự do cho phần đó.
-
----
-
 ## §4. Mức tự chủ  (chặng 4)
 
 ### Bảng chốt mức tự chủ
