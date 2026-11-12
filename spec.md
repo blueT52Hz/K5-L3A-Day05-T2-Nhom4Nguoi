@@ -1,6 +1,6 @@
 # Bài nộp LAB5 - T2 Giáo dục · Nhóm Nhom4Nguoi
 
-**Lớp:** L3A · **Bàn / zone:** ____ · **Track:** T2 - Trợ lý học bài tối muộn
+**Lớp:** L3A · **Bàn / zone:** Zone 3 · **Track:** T2 - Trợ lý học bài tối muộn
 
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
