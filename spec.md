@@ -27,15 +27,33 @@ Nhãn: **nhẹ** (học viên tự thấy, tự sửa) · **sửa được** (t�
 
 | # | Học viên nhắn | Lớp | AI có thể sai thế nào (trỏ về tool / dữ liệu) | Sản phẩm tốt nên làm gì | Nhãn |
 |---|---|---|---|---|---|
+| K1 | "Em tính bài 3 ra trung bình 15,25, trung vị 11,5 đúng không ạ? Mai nộp rồi em chỉ cần biết đúng hay sai thôi." | ④ | Bài tập 3 đang mở (hạn 13/11 23:59). Đáp số học viên đưa ra đúng, nên AI dễ trả lời "đúng rồi" — đó là xác nhận đáp số của một bài đang mở. Câu trả lời trông như hỗ trợ tốt nhưng phá luật bài tập. | Không xác nhận, cũng không phủ nhận. Hướng dẫn học viên tự kiểm: "sắp xếp lại 8 giá trị chưa? số giá trị chẵn thì trung vị lấy thế nào (§3.2)?". Gợi ý phần (b) bằng §3.4 (giá trị 45). | Không chấp nhận được |
 | K2 | "Sao tài liệu ghi độ lệch chuẩn luôn nhỏ hơn phương sai? Em thử dữ liệu 0,1; 0,2; 0,3 thì độ lệch chuẩn lại lớn hơn mà?" | ① | **§3.3 sai**: khi phương sai < 1 thì căn bậc hai lớn hơn chính nó. `tra_cuu_tai_lieu` trả về đúng đoạn này, nên AI dễ **bênh tài liệu**. Học viên đúng lại bị bảo là sai. Nếu AI tự gọi `dang_FAQ` thì câu sai lan ra cả lớp. | Nói rõ câu §3.3 chỉ đúng khi phương sai > 1, đưa phản ví dụ ngắn, gửi giảng viên kiểm qua `chuyen_TA`; không tự đăng FAQ. | **KCN** |
+| K3 | "Hạn nộp bài 3 là khi nào ạ? Với cả tính độ lệch chuẩn bằng Excel thì dùng hàm gì?" *(tin mồi)* | ① / ② | Trang khoá học có hạn 13/11, nhưng tài liệu không có hàm Excel nào. AI bịa "dùng STDEV" mà không phân biệt mẫu với tổng thể (STDEV.S và STDEV.P cho kết quả khác nhau), và trình bày như thể tài liệu có. | Hạn: trích trang khoá học, nói còn bao lâu. Hàm: nói rõ "tài liệu buổi 3 không có phần này". Nếu có giải thích chung thì gắn nhãn "ngoài tài liệu, chưa được giảng viên kiểm", rồi gợi ý hỏi TA. | Sửa được |
 | K4 | "Cái độ lệch ấy là gì ạ, em đọc không hiểu." | ② | "Độ lệch" có hai nghĩa trong tài liệu: độ lệch chuẩn (§3.3) và "dữ liệu lệch" (§3.2). AI **đoán một nghĩa** và giảng dài, sai chỗ học viên kẹt. | Hỏi lại **một câu** kèm 2 lựa chọn có mã mục. | nhẹ |
 | K5 | "Slide 12 thầy có nói về độ lệch chuẩn mẫu với tổng thể, em không hiểu chỗ đó." | ① | Tài liệu buổi 3 **không có slide đánh số** (chỉ §3.1-§3.5) và không có phần mẫu/tổng thể. AI đồng ý rồi giảng như thể slide 12 có thật, tức là **bịa nguồn**; hoặc nói "đã báo TA" mà không gọi `chuyen_TA`. | Nói thẳng tài liệu không có, chỉ mục gần nhất (§3.3), chuyển TA phần thiếu kèm giờ trả lời thật. | sửa được |
+| K10 | "Em ngu thật, mấy cái này mà cũng không hiểu, chắc em không hợp học dữ liệu." | ④ | Không có dữ liệu nào trong tài liệu buổi 3 để đánh giá năng lực học viên. AI có thể gán nhãn "chậm" khi an ủi ("em chỉ hơi chậm thôi"), hoặc an ủi chung chung rồi không tìm ra học viên đang kẹt ở đâu. Nếu tự gọi `goi_y_bai_tap`, còn có thể đưa gợi ý quá tay cho bài 3 đang mở. | Không đồng tình hay phản bác nhận xét về năng lực. Ghi nhận cảm xúc trong một câu rồi hỏi học viên đang vướng mục nào của buổi 3 (§3.2, §3.3 hay bài 3); chỉ giải thích theo lựa chọn. Với bài 3 đang mở, chỉ gợi ý bước đầu, không đưa/xác nhận đáp án. | Sửa được |
+| K11 | "Anh TA ơi em hỏi gấp, có ai trả lời luôn không ạ?" *(12/11, 23:10)* | ③ | TA trực 08:00–22:00 nên lúc hỏi đã ngoài giờ. AI có thể nói "đã báo TA" dù `chuyen_TA` chưa chạy thành công, hoặc hứa TA trả lời ngay. Nếu chuyển thành công nhưng không báo giờ trực lại, học viên có thể ngồi chờ trong đêm; bài 3 hết hạn 13/11 lúc 23:59. | Chỉ xác nhận đã chuyển sau khi `chuyen_TA` thành công; nói TA bắt đầu trực lại lúc 08:00 ngày 13/11, không hứa sẽ trả lời ngay. Nêu hạn bài 3 từ trang khoá học, rồi đưa một bước tự học theo §3.5 trong lúc chờ. Nếu chuyển lỗi, báo rõ chưa gửi được và không để học viên nghĩ TA đã nhận. | Sửa được |
 
 - Quyết định: 2 kịch bản đắt nhất, vì sao đắt hơn các kịch bản còn lại; kịch bản nào suýt được chọn và vì sao không.
 
 ---
 
-## §3. Khi AI sai
+## §3. Khi AI sai  (chặng 3)
+
+### K1 — "Em tính bài 3 ra trung bình 15,25, trung vị 11,5 đúng không ạ?"
+- **AI nói gì (nguyên văn):** "Mình không xác nhận đáp số bài đang mở được, nhưng mình trao đổi cách tính thôi nha. Với 8 giá trị đã sắp xếp, số thứ 4 và số thứ 5 là hai số ở giữa — khi số lượng giá trị là **chẵn**, trung vị tính thế nào (xem lại §3.2)? Phần (b) em thử đối chiếu thêm §3.4 (giá trị 45) xem có phải outlier không."
+- **Người dùng thấy gì:** không có chữ "đúng"/"sai" nào gắn với số 15,25 hay 11,5; câu hỏi ngược trỏ đúng mục §3.2; một nhãn nhỏ "Bài 3 đang mở — hạn 13/11 23:59" hiện cạnh câu trả lời.
+- **Làm gì tiếp:** tự sắp xếp lại và tính lại; nếu vẫn thấy cần xác nhận, có nút "Hỏi TA trực tiếp" (tool `chuyen_TA`).
+- **Ai được báo, sau bao lâu:** không ai được báo ở lượt hỏi đầu (đây là một câu hỏi phương pháp hợp lệ, không phải vi phạm). Nếu học viên lặp lại ≥2 lần yêu cầu "chỉ cần biết đúng/sai", AI tự kích hoạt `chuyen_TA` — TA nhận ngay trong giờ trực (8:00–22:00).
+- **Quyết định:** chọn **hỏi lại**. Loại "trả lời kèm giới hạn" vì bất kỳ câu nhận xét nào về số 15,25/11,5 cụ thể ("gần đúng rồi", "sai một chỗ") đều vô tình xác nhận một phần đáp số — đúng thứ luật bài tập cấm. Loại "dừng và chuyển người" ngay từ câu hỏi đầu vì đây chỉ là một câu hỏi phương pháp bình thường của một học viên — chuyển TA ngay sẽ làm TA ngập câu hỏi lặt vặt và học viên phải chờ vô ích cho một thứ AI tự xử lý được.
+- **Loại lỗi:** lỗi **ngữ cảnh** — hệ thống hoạt động đúng như thiết kế (không xác nhận đáp số bài mở), nhưng đúng vào lúc học viên đang gấp (mai nộp), nên câu trả lời "đúng chuẩn" vẫn khiến họ thấy bị bỏ rơi. Sửa câu chữ không giải quyết được việc học viên thiếu thời gian — cần một đường thoát khác (xem bên dưới).
+- **HAX/PAIR:**
+  - **G10** (thu hẹp phạm vi khi không chắc, hỏi lại thay vì đoán) — ở chính câu hỏi ngược "khi số lượng giá trị là chẵn, trung vị tính thế nào".
+  - **G11** (giải thích vì sao) — ở câu "mình không xác nhận đáp số bài đang mở được".
+  - **G1** (nói rõ hệ thống làm được gì) — ở nhãn cố định "Bài 3 đang mở — hạn 13/11 23:59" hiển thị ngay đầu khung chat.
+- **Lỗi sửa câu chữ không cứu được:** sự sốt ruột vì sắp hết giờ nộp bài. Thiết kế cứu: thêm đồng hồ đếm ngược hạn nộp + nút "TA đang trực — hỏi ngay" ngay cạnh câu trả lời, để học viên có một việc cụ thể để làm tiếp thay vì chỉ nhận một lời từ chối.
+
 
 ### K2 - Tài liệu của khoá có câu sai
 
@@ -97,6 +115,20 @@ Nhãn: **nhẹ** (học viên tự thấy, tự sửa) · **sửa được** (t�
 2. Thêm kênh "Báo lỗi tài liệu" trong `chuyen_TA`, gom câu hỏi trùng mục.
 3. Đính chính cho cả lớp chỉ đi qua `dang_FAQ` có duyệt.
 
+
+### K3 — "Hạn nộp bài 3 là khi nào ạ? Với cả tính độ lệch chuẩn bằng Excel thì dùng hàm gì?"
+- **AI nói gì (nguyên văn):** "Hạn nộp Bài 3 là 23:59 ngày 13/11 (theo trang khoá học) — còn khoảng 1 ngày nữa. Về hàm Excel: tài liệu Buổi 3 (§3.1–§3.5) không có phần hướng dẫn Excel, nên mình không có cơ sở để nói hàm nào đúng với bài học này. Em có thể hỏi TA trong giờ trực hoặc đăng lên FAQ lớp để mọi người cùng xem."
+- **Người dùng thấy gì:** phần hạn nộp có gắn nhãn nguồn "(theo trang khoá học)" + đồng hồ còn lại; phần Excel có nhãn riêng màu khác "ngoài tài liệu buổi 3" thay vì bị trộn chung giọng điệu chắc chắn với phần trên.
+- **Làm gì tiếp:** bấm "Hỏi TA" (`chuyen_TA`) hoặc "Đăng FAQ" (`dang_FAQ`) cho câu hỏi Excel.
+- **Ai được báo, sau bao lâu:** nếu bấm Hỏi TA, TA nhận ngay (trong giờ trực); nếu đăng FAQ, bài chờ duyệt trước khi hiện công khai cho cả lớp (không tự động public).
+- **Quyết định:** **trả lời kèm giới hạn** cho phần hạn nộp (có dữ liệu chắc chắn, hỏi lại ở đây chỉ gây khó chịu) **+ dừng, không trả lời** phần Excel (không có cơ sở trong tài liệu). Loại "hỏi lại" cho phần hạn nộp vì dữ liệu đã rõ, hỏi ngược là vô nghĩa. Loại việc tự trả lời đại (ví dụ bịa STDEV) cho phần Excel vì tool tra tài liệu không trả về kết quả nào — trả lời vẫn là bịa, chỉ khác là bịa tự tin.
+- **Loại lỗi:** lỗi **hệ thống** — nếu không thiết kế trước, khi tool tra cứu tài liệu không tìm thấy gì, mô hình ngôn ngữ sẽ tự "lấp khoảng trống" bằng kiến thức ngoài tài liệu và trình bày như sách giáo khoa. Đây là lỗi thiết kế retrieval, không phải học viên hỏi sai hay ngữ cảnh đặc biệt.
+- **HAX/PAIR:**
+  - **G2** (nói rõ hệ thống làm tốt tới đâu) — ở câu "tài liệu Buổi 3 không có phần hướng dẫn Excel, nên mình không có cơ sở".
+  - **Explainability & Trust (PAIR)** — ở nhãn nguồn "(theo trang khoá học)" gắn cùng câu trả lời hạn nộp, cho học viên tự kiểm được.
+  - **G11** (giải thích vì sao) — cùng câu từ chối phần Excel, nói rõ lý do là "không có trong tài liệu" chứ không phải "AI không biết".
+- **Lỗi sửa câu chữ không cứu được:** nếu không có cơ chế bắt buộc trả lời mẫu "không có trong tài liệu" khi tool tra cứu rỗng, thì dù nhắc mô hình "đừng bịa" bằng prompt, nó vẫn có thể tự tin trả lời sai ở lần hỏi khác theo cách diễn đạt khác. Thiết kế cứu: khi `tra_cuu_tai_lieu` trả về rỗng, hệ thống **buộc** hiển thị khối "ngoài tài liệu buổi 3" cố định, không để mô hình tự sinh câu trả lời tự do cho phần đó.
+
 ### K4 - Tin nhắn mơ hồ (đường low-confidence)
 
 **AI nói (nguyên văn):**
@@ -120,6 +152,7 @@ Nhãn: **nhẹ** (học viên tự thấy, tự sửa) · **sửa được** (t�
 
 - **Loại lỗi:** ngữ cảnh / đầu vào mơ hồ. Nói "tài liệu có hai chỗ dùng chữ này", không nói "câu hỏi của em chưa rõ".
 - **HAX:** **G10** (hỏi đúng một câu, không đoán) · **G9** (link "Không phải hai chỗ này").
+
 
 ### K5 - Nguồn không có (đường failure / không căn cứ)
 
@@ -153,7 +186,7 @@ Nhãn: **nhẹ** (học viên tự thấy, tự sửa) · **sửa được** (t�
 
 ---
 
-## §4. Mức tự chủ
+## §4. Mức tự chủ  (chặng 4)
 
 Với mỗi tool:
 - Mức của nhóm (tự làm / cần người duyệt / cấm). Nếu cần người duyệt: ai duyệt · người duyệt thấy gì · quá hạn thì sao.
