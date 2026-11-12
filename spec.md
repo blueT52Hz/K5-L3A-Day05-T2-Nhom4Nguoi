@@ -4,7 +4,7 @@
 
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
-| Nguyễn Hoa Thanh Tùng | 2A202603519 | §2 kịch bản K2, K4, K5; §3 phần K2 |
+| Nguyễn Hoa Thanh Tùng | 2A202603519 | §2 kịch bản K2, K4, K5; §3 phần K2, code demo prototype |
 | Lưu Thanh Mỹ | 2A202603532 | §2 kịch bản K1, K3; §3 phần K1 |
 | Vũ Đức Thắng | 2A202603601 | §2 kịch bản K6, K7 |
 | Bùi Mạnh Linh | 2A202603539 | §2 kịch bản K8, K9 |
@@ -144,7 +144,8 @@ Nhóm thêm hai luật: **không xác nhận đáp số bài đang mở** và **
 - Cách chạy: mở bằng Live Server hoặc chạy một HTTP server tĩnh trong thư mục `prototype`.
 - Công cụ sử dụng: HTML, CSS và JavaScript thuần; GSAP chỉ dùng cho hiệu ứng chuyển động và có thể bỏ qua khi trình duyệt không tải được CDN.
 - K1 và K2 dùng cùng một controller, nhưng có renderer và dữ liệu riêng cho từng kịch bản. Controller quản lý state, đồng hồ mô phỏng, mức tự chủ, chuyển TA và duyệt FAQ.
-- Toàn bộ dữ liệu học viên, tài liệu, hạn nộp, số người xem và trạng thái TA đều là mock. Prototype không gọi AI thật, không gửi dữ liệu ra ngoài và không có backend.
+- Luồng K1/K2 là kịch bản dựng; dữ liệu học viên, tài liệu, hạn nộp, số người xem và trạng thái TA đều là mock, không có backend.
+- **Có lời gọi AI thật:** panel "AI thật" gọi mô hình qua proxy Python cục bộ (`prototype/ai-proxy/`, provider chọn trong `.env`: OpenRouter / Gemini / Anthropic) ở đúng quyết định chính của lát cắt (giảng kèm trích / hỏi lại / gợi ý bước đầu / tài liệu không có / chuyển TA). Chỉ gửi dữ liệu dựng của track. Đầu ra là JSON có mã mục trích và nhãn nguồn, được proxy kiểm schema; AI không tự gọi tool, chuyển TA phải được học viên xác nhận và huỷ được. API key nằm trong `.env` phía server (không commit, không gửi xuống trình duyệt). Log: `prototype/real-ai-call-log.json`. Chi tiết: [`prototype/README.md`](prototype/README.md).
 
 ### Hai ảnh cần dùng trong bài nộp
 
