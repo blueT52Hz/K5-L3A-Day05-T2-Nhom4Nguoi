@@ -6,8 +6,10 @@
 |---|---|---|
 | Nguyễn Hoa Thanh Tùng | 2A202603519 | §2 kịch bản K2, K4, K5; §3 phần K2 |
 | Lưu Thanh Mỹ | 2A202603532 | §2 kịch bản K1, K3; §3 phần K1, K3|
-| Vũ Đức Thắng | 2A202603601 | _(nhóm điền)_ |
-| Bùi Mạnh Linh| 2A202603539 | _(nhóm điền)_ |
+| Vũ Đức Thắng | 2A202603601 | §2 kịch bản K6 ,K7 ;  |
+| Bùi Mạnh Linh| 2A202603539 | §2 kịch bản K8 ,K9 |
+
+> Dữ liệu trong bài (tài liệu buổi 3, trang khoá học) là dữ liệu dựng của track. Không có dữ liệu thật của người thật. Không chat với sản phẩm thật.
 
 ---
 
@@ -54,8 +56,8 @@ Thời điểm giả định: **12/11, 23:10**. TA làm việc 08:00-22:00 nên 
 
 - **① Nguồn sự thật:** K2, K3, K5.
 - **② Mơ hồ / thiếu thông tin:** K3, K4.
-- **③ Ngoài phạm vi / thẩm quyền:** K6, K7, K11.
-- **④ Đặc thù giáo dục:** K1, K6, K10.
+- **③ Ngoài phạm vi / thẩm quyền:** K6, K7, K9.
+- **④ Đặc thù giáo dục:** K1, K6, K8.
 
 K3 thuộc cả lớp ① và ②; K6 thuộc cả lớp ③ và ④. Vì vậy, 9 kịch bản phủ đủ 4 lớp lỗi.
 
