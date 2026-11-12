@@ -127,16 +127,28 @@ K6 suýt được chọn vì AI có thể giải quá tay bài đang mở và kh
 
 ## §4. Mức tự chủ  (chặng 4)
 
-Với mỗi tool:
-- Mức của nhóm (tự làm / cần người duyệt / cấm). Nếu cần người duyệt: ai duyệt · người duyệt thấy gì · quá hạn thì sao.
-- Lý do theo cost-of-error: sai thì ai chịu gì · đảo lại được không · chờ người thì mất gì.
-- Phương án đã cân nhắc và vì sao loại.
+### Bảng chốt mức tự chủ
 
-Thêm:
-- Tool khó xếp nhất: mỗi người từng chọn gì, cái giá của mỗi phía (trỏ về kịch bản ở §2), nhóm chốt thế nào.
-- Thử mức đã đặt trên 2 kịch bản đắt nhất + 1 kịch bản bình thường: cái sai có bị chặn không? còn việc nào làm khi lẽ ra phải hỏi? người dùng bình thường có phải chờ vô ích không?
-- Luật thêm hoặc tool tách bước (nếu có), và vì sao.
-- Một mức tự chủ đã đổi lời hứa nào với người dùng.
+| Tool | Mức của nhóm | Người duyệt / dữ liệu nhìn thấy | Cost-of-error và phương án bị loại |
+|---|---|---|---|
+| `tra_cuu_tai_lieu` | **Tự làm, chỉ đọc** | Không cần duyệt. AI phải hiện mục nguồn và nhãn giới hạn khi tài liệu có dấu hiệu sai hoặc không có kết quả. | Sai nguồn làm học viên học sai như K2; có thể sửa ở nguồn và đính chính, nhưng người đã đọc vẫn có thể nhớ sai. Không chọn luật “tài liệu luôn đúng” vì K2 cho thấy nguồn chính không đồng nghĩa nguồn không thể sai. |
+| `goi_y_bai_tap` | **Tự làm, chỉ bước đầu** | Không cần duyệt cho gợi ý phương pháp. Không được đưa hoặc xác nhận đáp số bài đang mở; học viên có thể yêu cầu bước tiếp theo sau khi tự làm bước trước. | Gợi ý quá tay khiến học viên chép bài, không thể thu hồi. Không chọn trả lời đầy đủ chỉ vì nhanh hơn; cũng không cấm tuyệt đối vì K1 vẫn có câu hỏi phương pháp hợp lệ mà AI có thể hỗ trợ. |
+| `chuyen_TA` | **Tự làm khi có điều kiện rõ** | TA/giảng viên thấy mã mục, câu hỏi, bằng chứng, nhãn lỗi và thời điểm gửi. Chỉ hiện “đã gửi” sau khi chuyển thành công; ngoài giờ phải hiện giờ bắt đầu trực lại. | Chuyển nhầm chỉ tốn công và có thể hủy, nhưng không chuyển khi K2/K5 làm lỗi nguồn không được phát hiện. Không chuyển mọi câu hỏi ngay vì học viên bình thường sẽ chờ vô ích. |
+| `dang_FAQ` | **Cần giảng viên duyệt** *(mức nhóm chọn)* | Giảng viên duyệt bản nháp gồm mục tài liệu, câu nghi sai, phản ví dụ, lý do và số người đang gặp cùng lỗi. Nếu chưa duyệt thì không đăng; nếu bị từ chối, giữ ở hàng chờ để sửa. | Đăng sai có thể lan tới 42 học viên; gỡ không thu lại người đã đọc. Mức “AI tự đăng + gỡ” bị loại vì quyền đính chính thuộc giảng viên; mức “cấm hoàn toàn” bị loại vì bản nháp giúp duyệt nhanh hơn. |
+
+### Tool khó xếp nhất
+
+`dang_FAQ` khó xếp nhất. Một phía muốn tự đăng để sửa nhanh lỗi §3.3 trong K2; phía còn lại phải chịu rủi ro câu đính chính sai lan ra cả lớp. Nhóm chốt **soạn nháp, chờ giảng viên duyệt**: học viên hiện tại vẫn nhận được giải thích có giới hạn và có thể chuyển TA, còn thông báo công khai chỉ xuất hiện sau khi có người chịu trách nhiệm kiểm tra.
+
+### Thử trên ba kịch bản
+
+- **K1:** `goi_y_bai_tap` ở mức chỉ bước đầu chặn việc xác nhận 15,25 và 11,5; học viên vẫn tự kiểm trung vị và có đường hỏi TA. Không bắt học viên bình thường chờ TA ngay từ lượt đầu.
+- **K2:** `tra_cuu_tai_lieu` vẫn cho xem §3.3 nhưng phải kiểm phản ví dụ, gắn nhãn chưa được xác nhận và gọi `chuyen_TA`; `dang_FAQ` chỉ tạo nháp. Lỗi nguồn bị chặn trước khi lan cả lớp, trong khi học viên vẫn học tiếp được.
+- **K3:** Hạn nộp được trích từ trang khóa học, còn hàm Excel được đánh dấu ngoài tài liệu thay vì đoán. Người dùng không phải chờ duyệt cho thông tin hạn nộp đã chắc chắn.
+
+### Luật bổ sung và lời hứa thay đổi
+
+Nhóm thêm hai luật: **không xác nhận đáp số bài đang mở** và **không coi tài liệu là nguồn không thể sai**. Các tool có tác động lan truyền được tách thành hai bước: AI soạn dữ liệu có căn cứ, người có thẩm quyền duyệt trước khi công khai. Vì vậy, ở mức `dang_FAQ` ② lời hứa đổi từ “AI sửa ngay cho cả lớp” thành “AI soạn bản đính chính, giảng viên duyệt rồi mới đăng”; trạng thái chờ và thời gian phản hồi phải được hiển thị rõ.
 
 ---
 
