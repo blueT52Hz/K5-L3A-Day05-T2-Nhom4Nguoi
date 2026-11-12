@@ -5,9 +5,9 @@
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 | Nguyễn Hoa Thanh Tùng | 2A202603519 | §2 kịch bản K2, K4, K5; §3 phần K2 |
-| Lưu Thanh Mỹ | 2A202603532 | §2 kịch bản K1, K3; §3 phần K1, K3|
-| Vũ Đức Thắng | 2A202603601 | §2 kịch bản K6 ,K7 ;  |
-| Bùi Mạnh Linh| 2A202603539 | §2 kịch bản K8 ,K9 |
+| Lưu Thanh Mỹ | 2A202603532 | §2 kịch bản K1, K3; §3 phần K1, K3 |
+| Vũ Đức Thắng | 2A202603601 | §2 kịch bản K6, K7 |
+| Bùi Mạnh Linh | 2A202603539 | §2 kịch bản K8, K9 |
 
 > Dữ liệu trong bài (tài liệu buổi 3, trang khoá học) là dữ liệu dựng của track. Không có dữ liệu thật của người thật. Không chat với sản phẩm thật.
 
