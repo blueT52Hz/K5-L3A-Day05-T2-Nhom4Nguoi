@@ -5,7 +5,7 @@
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 | Nguyễn Hoa Thanh Tùng | 2A202603519 | §2 kịch bản K2, K4, K5; §3 phần K2 |
-| Lưu Thanh Mỹ | 2A202603532 | §2 kịch bản K1, K3; §3 phần K1, K3|
+| Lưu Thanh Mỹ | 2A202603532 | §2 kịch bản K1, K3; §3 phần K1, K3; ảnh prototype K1 (`prototype/P1.png`) |
 | Vũ Đức Thắng | 2A202603601 | §2 kịch bản K6 ,K7 ;  |
 | Bùi Mạnh Linh| 2A202603539 | §2 kịch bản K8 ,K9 |
 
