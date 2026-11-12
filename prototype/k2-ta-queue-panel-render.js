@@ -4,7 +4,7 @@
  *   1 = forbidden (lecturer writes from scratch), 2 = AI draft awaiting approval, 3 = already live.
  * Pure function: returns HTML for the current state; actions are wired by data-act in the app file.
  */
-window.renderTaQueue = function renderTaQueue(ctx) {
+window.renderK2TaQueue = function renderK2TaQueue(ctx) {
   const { S, n, esc, clock } = ctx;
   const K = window.K2;
   const T = K.ticket;

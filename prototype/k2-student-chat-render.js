@@ -14,7 +14,7 @@
   };
   window.K2_ICON = ICON;
 
-  window.renderStudentChat = function renderStudentChat(ctx) {
+  window.renderK2StudentChat = function renderK2StudentChat(ctx) {
     const { S, n, esc, clock, confirmed } = ctx;
     const K = window.K2;
 
